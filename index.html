@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<title>Amadeus Passenger Form</title>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
-<style>
+  <meta charset="UTF-8" />
+  <title>Amadeus Passenger Form</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
+  <style>
     body {
       font-family: 'Inter', sans-serif;
       background: #f6f9fc;
       margin: 0;
       padding: 20px;
-      color: #1e2a44;
+      color: #000835;
     }
- 
+
     .container {
       max-width: 600px;
       margin: auto;
@@ -22,7 +22,7 @@
       padding: 25px 20px;
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
     }
- 
+
     .logo-heading {
       display: flex;
       align-items: center;
@@ -30,25 +30,25 @@
       margin-bottom: 15px;
       gap: 10px;
     }
- 
+
     .logo-heading img {
       height: 30px;
     }
- 
+
     h2 {
       text-align: center;
-      color: #002366;
+      color: #000835;
       margin-bottom: 25px;
       font-size: 20px;
     }
- 
+
     label {
       font-weight: 600;
       margin-top: 12px;
       display: block;
       font-size: 14px;
     }
- 
+
     input, select, textarea {
       width: 100%;
       padding: 10px;
@@ -57,14 +57,14 @@
       border-radius: 6px;
       font-size: 14px;
     }
- 
+
     textarea {
       resize: vertical;
     }
- 
+
     button {
       margin-top: 20px;
-      background-color: #002366;
+      background-color: #000835;
       color: #fff;
       border: none;
       padding: 12px;
@@ -74,101 +74,142 @@
       width: 100%;
       cursor: pointer;
     }
- 
+
     button:hover {
-      background-color: #00194d;
+      background-color: #000835;
     }
- 
+
     @media (max-width: 480px) {
       .container {
         padding: 20px 15px;
       }
- 
+
       h2 {
         font-size: 18px;
       }
- 
+
       label, input, select, textarea {
         font-size: 14px;
       }
     }
-</style>
+  </style>
 </head>
 <body>
- 
+
 <div class="container">
-<div class="logo-heading">
-<img src="images/amadeuslogo.png" alt="Amadeus Logo">
-<span style="font-size: 18px; font-weight: 600;">Amadeus Passenger Form</span>
-</div>
- 
+  <div class="logo-heading">
+    <img src="images/amadeuslogo.png" alt="Amadeus Logo">
+  </div>
+
   <h2>Passenger Information</h2>
-<form>
-<label for="fullName">Full Legal Name</label>
-<input type="text" id="fullName" required>
- 
+  <form>
+    <label for="fullName">Full Legal Name (As per passport)</label>
+    <input type="text" id="fullName" required>
+
     <label for="dob">Date of Birth</label>
-<input type="date" id="dob" required>
- 
+    <input type="date" id="dob" required>
+
     <label for="passportNumber">Passport Number</label>
-<input type="text" id="passportNumber" required>
- 
+    <input type="text" id="passportNumber" required>
+
     <label for="nationality">Nationality</label>
-<input type="text" id="nationality" required>
- 
+    <input type="text" id="nationality" required>
+
     <label for="gender">Gender</label>
-<select id="gender" required>
-<option value="">Select</option>
-<option>Male</option>
-<option>Female</option>
-<option>Other</option>
-</select>
- 
+    <select id="gender" required>
+      <option value="">Select</option>
+      <option>Male</option>
+      <option>Female</option>
+      <option>Other</option>
+    </select>
+
     <label for="email">Email</label>
-<input type="email" id="email" required>
- 
-    <label for="phone">Phone Number</label>
-<input type="tel" id="phone" required>
- 
+    <input type="email" id="email" required>
+
+    <label for="phone">Phone Number (with country code)</label>
+    <input type="tel" id="phone" required>
+
     <label for="address">Residential Address</label>
-<textarea id="address" rows="3" required></textarea>
- 
+    <textarea id="address" rows="3" required></textarea>
+
     <label for="baggage">Baggage Preference</label>
-<select id="baggage">
-<option value="">Standard</option>
-<option>Extra Baggage</option>
-<option>Cabin Only</option>
-</select>
- 
+    <select id="baggage">
+      <option value="">Standard</option>
+      <option>Extra Baggage</option>
+      <option>Cabin Only</option>
+    </select>
+
     <label for="mealPref">Meal Preference</label>
-<select id="mealPref">
-<option>Standard</option>
-<option>Vegetarian</option>
-<option>Vegan</option>
-<option>Jain</option>
-<option>Halal</option>
-<option>Gluten-free</option>
-</select>
- 
-    <label for="insurance">Travel Insurance</label>
-<select id="insurance" required>
-<option value="">Select</option>
-<option>Yes</option>
-<option>No</option>
-</select>
- 
+    <select id="mealPref">
+      <option>Standard</option>
+      <option>Vegetarian</option>
+      <option>Vegan</option>
+      <option>Jain</option>
+      <option>Halal</option>
+      <option>Gluten-free</option>
+    </select>
+
+    <label for="insurance">Do you need travel insurance?</label>
+    <select id="insurance" required>
+      <option value="">Select</option>
+      <option>Yes</option>
+      <option>No</option>
+    </select>
+
     <label for="emergencyName">Emergency Contact Name</label>
-<input type="text" id="emergencyName" required>
- 
+    <input type="text" id="emergencyName" required>
+
     <label for="emergencyPhone">Emergency Contact Phone</label>
-<input type="tel" id="emergencyPhone" required>
- 
+    <input type="tel" id="emergencyPhone" required>
+
     <label for="relationship">Relationship to Passenger</label>
-<input type="text" id="relationship" required>
- 
+    <input type="text" id="relationship" required>
+
     <button type="submit">Book Now</button>
-</form>
+  </form>
 </div>
- 
+<!-- [Keep all your <html>, <head> & <style> sections unchanged from previous version] -->
+<!-- Add this at the bottom, right before </body>: -->
+
+<script>
+  document.querySelector("form").addEventListener("submit", function (e) {
+    const passport = document.getElementById("passportNumber");
+    const phone = document.getElementById("phone");
+    const returnDate = document.getElementById("returnDate");
+    const departureDate = document.getElementById("departureDate");
+    const emergencyPhone = document.getElementById("emergencyPhone");
+
+    // Passport: alphanumeric and 6-9 characters
+    const passportValid = /^[A-Za-z0-9]{6,9}$/.test(passport.value);
+    if (!passportValid) {
+      alert("Passport number should be 6–9 alphanumeric characters.");
+      e.preventDefault();
+      return;
+    }
+
+    // Phone numbers: at least 10 digits
+    const phoneValid = /^\+?\d{10,15}$/.test(phone.value);
+    if (!phoneValid) {
+      alert("Please enter a valid phone number with country code.");
+      e.preventDefault();
+      return;
+    }
+
+    if (phone.value === emergencyPhone.value) {
+      alert("Emergency contact number should be different from your main phone.");
+      e.preventDefault();
+      return;
+    }
+
+    // Date logic
+    const dep = new Date(departureDate.value);
+    const ret = new Date(returnDate.value);
+    if (returnDate.value && ret <= dep) {
+      alert("Return date must be after departure date.");
+      e.preventDefault();
+      return;
+    }
+  });
+</script>
 </body>
 </html>
