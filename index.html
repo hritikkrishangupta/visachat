@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Amadeus passenger form</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f3f7fb;
+      padding: 30px;
+      margin: 0;
+      color: #000835;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: auto;
+      background: white;
+      border-radius: 10px;
+      padding: 40px 30px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #000835;
+      margin-bottom: 30px;
+    }
+
+    .form-section {
+      margin-bottom: 40px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 12px;
+      margin-top: 6px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    button {
+      background-color: #000835;
+      color: #fff;
+      border: none;
+      padding: 14px;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: 6px;
+      width: 100%;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #000835;
+    }
+
+    @media(max-width: 768px) {
+      .container {
+        padding: 25px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+<h2>
+  <img src="images/amadeuslogo.png" alt="Amadeus Logo" style="height: 32px; vertical-align: middle; margin-right: 10px;">
+
+</h2>
+    <form>
+      <!-- Passenger Details -->
+      <div class="form-section">
+        <label for="fullName">Full Legal Name (As per passport)</label>
+        <input type="text" id="fullName" required>
+
+        <label for="dob">Date of Birth</label>
+        <input type="date" id="dob" required>
+
+        <label for="passportNumber">Passport Number</label>
+        <input type="text" id="passportNumber" required>
+
+        <label for="nationality">Nationality</label>
+        <input type="text" id="nationality" required>
+
+        <label for="gender">Gender</label>
+        <select id="gender" required>
+          <option value="">Select</option>
+          <option>Male</option>
+          <option>Female</option>
+          <option>Other</option>
+        </select>
+      
+
+      <!-- Contact Details -->
+      
+        <label for="email">Email</label>
+        <input type="email" id="email" required>
+
+        <label for="phone">Phone Number (with country code)</label>
+        <input type="tel" id="phone" required>
+
+        <label for="address">Residential Address</label>
+        <textarea id="address" rows="3" required></textarea>
+      
+
+      <!-- Travel Details -->
+     
+        <label for="baggage">Baggage Preference</label>
+        <select id="baggage">
+          <option value="">Standard</option>
+          <option>Extra Baggage</option>
+          <option>Cabin Only</option>
+        </select>
+     
+
+      <!-- Optional Services -->
+      
+       <label for="mealPref">Meal Preference</label>
+        <select id="mealPref">
+          <option>Standard</option>
+          <option>Vegetarian</option>
+          <option>Vegan</option>
+          <option>Jain</option>
+          <option>Halal</option>
+          <option>Gluten-free</option>
+        </select>
+
+        <label for="insurance">Do you need travel insurance?</label>
+        <select id="insurance" required>
+          <option value="">Select</option>
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+
+
+      <!-- Emergency Contact -->
+    
+        <label for="emergencyName">Emergency Contact Name</label>
+        <input type="text" id="emergencyName" required>
+
+        <label for="emergencyPhone">Emergency Contact Phone</label>
+        <input type="tel" id="emergencyPhone" required>
+
+        <label for="relationship">Relationship to Passenger</label>
+        <input type="text" id="relationship" required>
+      </div>
+
+      <button type="submit">Book Now</button>
+    </form>
+  </div>
+<!-- [Keep all your <html>, <head> & <style> sections unchanged from previous version] -->
+<!-- Add this at the bottom, right before </body>: -->
+
+<script>
+  document.querySelector("form").addEventListener("submit", function (e) {
+    const passport = document.getElementById("passportNumber");
+    const phone = document.getElementById("phone");
+    const returnDate = document.getElementById("returnDate");
+    const departureDate = document.getElementById("departureDate");
+    const emergencyPhone = document.getElementById("emergencyPhone");
+
+    // Passport: alphanumeric and 6-9 characters
+    const passportValid = /^[A-Za-z0-9]{6,9}$/.test(passport.value);
+    if (!passportValid) {
+      alert("Passport number should be 6–9 alphanumeric characters.");
+      e.preventDefault();
+      return;
+    }
+
+    // Phone numbers: at least 10 digits
+    const phoneValid = /^\+?\d{10,15}$/.test(phone.value);
+    if (!phoneValid) {
+      alert("Please enter a valid phone number with country code.");
+      e.preventDefault();
+      return;
+    }
+
+    if (phone.value === emergencyPhone.value) {
+      alert("Emergency contact number should be different from your main phone.");
+      e.preventDefault();
+      return;
+    }
+
+    // Date logic
+    const dep = new Date(departureDate.value);
+    const ret = new Date(returnDate.value);
+    if (returnDate.value && ret <= dep) {
+      alert("Return date must be after departure date.");
+      e.preventDefault();
+      return;
+    }
+  });
+</script>
+</body>
+</html>
