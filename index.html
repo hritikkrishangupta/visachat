@@ -89,6 +89,14 @@
     button:hover {
       background-color: #001053;
     }
+
+    #submissionMessage {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #2e7d32;
+      display: none;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -101,48 +109,48 @@
     <h2>Passenger Information</h2>
     <form id="passengerForm">
       <label for="firstName">Passenger First Name</label>
-      <input type="text" id="firstName" required />
+      <input type="text" id="firstName" required value="Rahul" />
 
       <label for="lastName">Passenger Last Name</label>
-      <input type="text" id="lastName" required />
+      <input type="text" id="lastName" required value="Sharma" />
 
       <label for="dob">Date of Birth</label>
-      <input type="date" id="dob" required />
+      <input type="date" id="dob" required value="1990-06-15" />
 
       <label for="passportNumber">Passport Number</label>
-      <input type="text" id="passportNumber" required />
+      <input type="text" id="passportNumber" required value="A12345678" />
 
       <label for="nationality">Nationality</label>
-      <input type="text" id="nationality" required />
+      <input type="text" id="nationality" required value="Indian" />
 
       <label for="gender">Gender</label>
       <select id="gender" required>
         <option value="">Select</option>
-        <option>Male</option>
+        <option selected>Male</option>
         <option>Female</option>
         <option>Other</option>
       </select>
 
       <label for="email">Email</label>
-      <input type="email" id="email" required />
+      <input type="email" id="email" required value="rahul.sharma@example.com" />
 
       <label for="phone">Phone Number (with country code)</label>
-      <input type="tel" id="phone" required />
+      <input type="tel" id="phone" required value="+919876543210" />
 
       <label for="address">Residential Address</label>
-      <textarea id="address" rows="3" required></textarea>
+      <textarea id="address" rows="3" required>123, MG Road, Delhi</textarea>
 
       <label for="baggage">Baggage Preference</label>
       <select id="baggage">
         <option value="">Standard</option>
-        <option>Extra Baggage</option>
+        <option selected>Extra Baggage</option>
         <option>Cabin Only</option>
       </select>
 
       <label for="mealPref">Meal Preference</label>
       <select id="mealPref">
         <option>Standard</option>
-        <option>Vegetarian</option>
+        <option selected>Vegetarian</option>
         <option>Vegan</option>
         <option>Jain</option>
         <option>Halal</option>
@@ -152,27 +160,31 @@
       <label for="insurance">Do you need travel insurance?</label>
       <select id="insurance" required>
         <option value="">Select</option>
-        <option>Yes</option>
+        <option selected>Yes</option>
         <option>No</option>
       </select>
 
       <label for="emergencyName">Emergency Contact Name</label>
-      <input type="text" id="emergencyName" required />
+      <input type="text" id="emergencyName" required value="Priya Sharma" />
 
       <label for="emergencyPhone">Emergency Contact Phone</label>
-      <input type="tel" id="emergencyPhone" required />
+      <input type="tel" id="emergencyPhone" required value="+911234567890" />
 
       <label for="relationship">Relationship to Passenger</label>
-      <input type="text" id="relationship" required />
+      <input type="text" id="relationship" required value="Wife" />
 
       <button type="submit">Book Now</button>
+
+      <div id="submissionMessage">Booking submitted successfully!</div>
     </form>
   </div>
 
-  <!-- Submit logic -->
   <script>
-    document.getElementById("passengerForm").addEventListener("submit", function (event) {
-      event.preventDefault(); // prevent page reload
+    const form = document.getElementById("passengerForm");
+    const messageBox = document.getElementById("submissionMessage");
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
 
       const formData = {
         firstName: document.getElementById("firstName").value,
@@ -192,11 +204,27 @@
         relationship: document.getElementById("relationship").value
       };
 
-      // Show result in console (or send to backend)
-      console.log("Booking Submitted:", formData);
+      // Send data via postMessage
+      window.parent.postMessage(
+        JSON.stringify({
+          event_code: "ym-client-event",
+          data: JSON.stringify({
+            event: {
+              code: "passengerDetails",
+              data: formData,
+            },
+          }),
+        }),
+        "*"
+      );
 
-      // Optional alert or confirmation
-      alert("Form submitted!");
+      console.log("Booking data sent:", formData);
+
+      // Disable all inputs
+      form.querySelectorAll("input, select, textarea, button").forEach(el => el.disabled = true);
+
+      // Show success message
+      messageBox.style.display = "block";
     });
   </script>
 </body>
