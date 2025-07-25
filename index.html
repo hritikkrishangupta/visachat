@@ -90,13 +90,6 @@
       background-color: #001053;
     }
 
-    #submissionMessage {
-      margin-top: 15px;
-      font-size: 14px;
-      color: #2e7d32;
-      display: none;
-      text-align: center;
-    }
   </style>
 </head>
 <body>
@@ -175,7 +168,6 @@
 
       <button type="submit">Book Now</button>
 
-      <div id="submissionMessage">Booking submitted successfully!</div>
     </form>
   </div>
 
@@ -223,8 +215,6 @@
       // Disable all inputs
       form.querySelectorAll("input, select, textarea, button").forEach(el => el.disabled = true);
 
-      // Show success message
-      messageBox.style.display = "block";
     });
   </script>
 </body>
